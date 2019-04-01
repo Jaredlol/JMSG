@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "295797084404",
+    "firebase_url": "https://jmessenger-6bddc.firebaseio.com",
+    "project_id": "jmessenger-6bddc",
+    "storage_bucket": "jmessenger-6bddc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295797084404:android:08868339ec1d45e4",
+        "android_client_info": {
+          "package_name": "com.example.jmessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "295797084404-672ke68rf9uv7v81vhbgirfo84g45506.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.jmessenger",
+            "certificate_hash": "7dad38f633d3dca483e8303ef722d8c27fa0ef00"
+          }
+        },
+        {
+          "client_id": "295797084404-7o6dd7isg4dm38p631sb30ndbm87lcjg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdpV0hOaCSsWIMu03g4TyoOvr-CmL9Ais"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295797084404-7o6dd7isg4dm38p631sb30ndbm87lcjg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
