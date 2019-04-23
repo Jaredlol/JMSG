@@ -182,6 +182,11 @@ public class ProfileActivity extends AppCompatActivity
                     {
                         AcceptChatRequest();
                     }
+                    if (Current_State.equals("friends"))
+                    {
+                        RemoveContact();
+                    }
+
                 }
             });
         }
@@ -192,6 +197,38 @@ public class ProfileActivity extends AppCompatActivity
     }
 
 
+
+    private void RemoveContact()
+    {
+        ContactsRef.child(senderUserID).child(receiverUserID)
+                .removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            ContactsRef.child(receiverUserID).child(senderUserID)
+                                    .removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task)
+                                        {
+                                            if (task.isSuccessful())
+                                            {
+                                                SendMessageRequestButton.setEnabled(true);
+                                                Current_State = "new";
+                                                SendMessageRequestButton.setText("Send Message");
+
+                                                DeclineMessageRequestButton.setVisibility(View.INVISIBLE);
+                                                DeclineMessageRequestButton.setEnabled(false);
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                });
+    }
 
 
     private void AcceptChatRequest()
