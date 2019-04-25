@@ -1,6 +1,7 @@
 package com.example.jmessenger;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -36,6 +37,7 @@ public class ChatsFragment extends Fragment
     private DatabaseReference ChatsRef, UsersRef;
     private FirebaseAuth mAuth;
     private String currentUserID;
+
 
 
 
@@ -79,22 +81,38 @@ public class ChatsFragment extends Fragment
                     protected void onBindViewHolder(@NonNull final ChatsViewHolder holder, int position, @NonNull Contacts model)
                     {
                         final String usersIDs = getRef(position).getKey();
+                        final String[] retImage = {"default_image"};
 
                         UsersRef.child(usersIDs).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot)
                             {
-                                if (dataSnapshot.hasChild("image"))
+                                if (dataSnapshot.exists())
                                 {
-                                    final String retImage = dataSnapshot.child("image").getValue().toString();
-                                    Picasso.get().load(retImage).into(holder.profileImage);
+                                    if (dataSnapshot.hasChild("image"))
+                                    {
+                                        retImage[0] = dataSnapshot.child("image").getValue().toString();
+                                        Picasso.get().load(retImage[0]).into(holder.profileImage);
+                                    }
+
+                                    final String retName = dataSnapshot.child("name").getValue().toString();
+                                    final String retStatus = dataSnapshot.child("status").getValue().toString();
+
+                                    holder.userName.setText(retName);
+                                    holder.userStatus.setText("Last Seen: " + "\n" + "Date " + "Time");
+
+                                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v)
+                                        {
+                                            Intent chatIntent = new Intent(getContext(), ChatActivity.class);
+                                            chatIntent.putExtra("visit_user_id", usersIDs);
+                                            chatIntent.putExtra("visit_user_name", retName);
+                                            chatIntent.putExtra("visit_image", retImage[0]);
+                                            startActivity(chatIntent);
+                                        }
+                                    });
                                 }
-
-                                final String retName = dataSnapshot.child("name").getValue().toString();
-                                final String retStatus = dataSnapshot.child("status").getValue().toString();
-
-                                holder.userName.setText(retName);
-                                holder.userStatus.setText("Last Seen: " + "\n" + "Date " + "Time");
                             }
 
                             @Override
