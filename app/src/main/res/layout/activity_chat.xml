@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
     tools:context=".ChatActivity">
 
     <include
@@ -33,7 +34,7 @@
 
         <EditText
             android:id="@+id/input_message"
-            android:layout_width="350dp"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:hint="Enter Message"
             android:padding="15dp"
@@ -41,7 +42,7 @@
         
         <ImageButton
             android:id="@+id/send_message_btn"
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:src="@drawable/send_message"
             />
